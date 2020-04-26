@@ -917,7 +917,7 @@ void MakeNodeTransitive(IncludePicker::IncludeMap* filename_map,
   if (status == kCalculating) {   // means there's a cycle in the mapping
     // TODO: Reconsider cycle handling; the include_cycle test fails without
     // this special-casing, but it seems we should handle this more generally.
-    if (key.find("internal/") != string::npos) {
+    if (key.find("boost/") != string::npos) {
       VERRS(4) << "Ignoring a cyclical mapping involving " << key << "\n";
       return;
     }
@@ -1598,7 +1598,7 @@ void IncludePicker::AddMappingsFromFile(const string& filename,
 
         // Add the path of the file we're currently processing
         // to the search path. Allows refs to be relative to referrer.
-        vector<string> extended_search_path = 
+        vector<string> extended_search_path =
             ExtendMappingFileSearchPath(search_path,
                                         GetParentPath(absolute_path));
 
